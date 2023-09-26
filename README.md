@@ -6,6 +6,8 @@ This repo and any code or binaries within it are not explicitly endorsed nor pro
 
 ## Versions
 
+- [_6.0.10_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r6.0.10-mongodb-raspberrypi-docker-unofficial) [September 25, 2023]
+
 - [_6.0.10_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r6.0.10-mdb-rpi-docker-unofficial) [September 24, 2023]
 
 - [_6.0.8_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r6.0.8-mdb-rpi-docker-unofficial) [September 24, 2023]
