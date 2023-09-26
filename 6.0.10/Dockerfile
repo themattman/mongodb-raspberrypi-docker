@@ -86,11 +86,16 @@ ENV MONGO_VERSION r6.0.10
 # 09/29/2022, https://github.com/mongodb/mongo/tree/94fb7dfc8b974f1f5343e7ea394d0d9deedba50e
 
 RUN set -x; \
-    wget -O /tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.pi.${MONGO_VERSION}.tar.gz \
-        && tar xzvf /tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz -C /tmp \
-        && mv /tmp/mongo{,d,s} /usr/local/bin \
+    wget -O "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.pi.${MONGO_VERSION}.tar.gz" \
+        && tar xzvf "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" -C /tmp \
+        && mv /tmp/mongo /usr/local/bin \
+        && mv /tmp/mongod /usr/local/bin \
+        && mv /tmp/mongos /usr/local/bin \
         && rm /tmp/README.md \
-        && rm /tmp/LICENSE-Community.txt
+        && rm /tmp/LICENSE-Community.txt \
+	&& wget -O "/tmp/libstdc++.so.6.0.29" "https://github.com/themattman/raspberrypi-binaries/raw/main/libstdc%2B%2B/libstdc%2B%2B.so.6.0.29" \
+	&& mv "/tmp/libstdc++.so.6.0.29" "/usr/local/lib/libstdc++.so.6.0.29" \
+	&& ln -sf "/usr/local/lib/libstdc++.so.6.0.29" "/lib/aarch64-linux-gnu/libstdc++.so.6"
 VOLUME /data/db /data/configdb
 
 # ensure that if running as custom user that "mongosh" has a valid "HOME"
