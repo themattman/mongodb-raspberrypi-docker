@@ -22,6 +22,12 @@ This repo and any code or binaries within it are not explicitly endorsed nor pro
 
 - [_6.1.0-rc4_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r6.1.0-rc4-mdb-rpi-docker-unofficial) [March 9, 2023]
 
+## Super-basic build steps
+1. Save the `Dockerfile` & `docker-entrypoint.sh` files from the relevant versions sub-directory, to a local working directory.
+2. Adjust permissions on the `docker-entrypoint.sh` file to make it executable - `chmod +x docker-entrypoint.sh`
+3. Build the image from your working directory - `docker build -t mongodb-unofficial:7.0.3 .`
+The image should now exist in your local docker images, or can be pushed to a registry for wider usage.  
+
 ## Source
 
 https://github.com/themattman/mongodb-raspberrypi-binaries/releases
