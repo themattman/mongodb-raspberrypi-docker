@@ -45,7 +45,7 @@ mongodb-raspberrypi4-unofficial-r7.0.3    latest    c04f966fe9e2   5 days ago   
 ```
 5. Run the image
 ```
-docker run -it mongodb-raspberrypi4-unofficial-r7.0.3
+$ docker run -it mongodb-raspberrypi4-unofficial-r7.0.3
 ```
 
 ### Custom Build Steps (Slower, more control)
@@ -53,11 +53,11 @@ docker run -it mongodb-raspberrypi4-unofficial-r7.0.3
 1. Save the `Dockerfile` & `docker-entrypoint.sh` files from the relevant version's sub-directory, to a local working directory.
 2. Adjust permissions on the `docker-entrypoint.sh` file to make it executable
 ```
-chmod +x docker-entrypoint.sh
+$ chmod +x docker-entrypoint.sh
 ```
 3. Build the image from your working directory
 ```
-docker build -t mongodb-unofficial:7.0.3
+$ docker build -t mongodb-unofficial:7.0.3
 ```
 
 The image should now exist in your local docker images, or can be pushed to a registry for wider usage.  
