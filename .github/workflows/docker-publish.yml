@@ -24,7 +24,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: production
     permissions:
       contents: read
       packages: write
