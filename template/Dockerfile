@@ -1,7 +1,9 @@
 #
-# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+# NOTE: THIS DOCKERFILE WAS ORIGINALLY GENERATED VIA "apply-templates.sh"
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
+#
+# SUBNOTE: This file has been directly edited for https://github.com/themattman/mongodb-raspberrypi-docker
 #
 
 FROM ubuntu:focal
