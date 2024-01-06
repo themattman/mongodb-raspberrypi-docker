@@ -8,8 +8,6 @@ This repo and any code or binaries within it are not explicitly endorsed nor pro
 
 - [_7.0.4_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r7.0.4-mongodb-raspberrypi-docker-unofficial) [January 05, 2024]
 
-- [_7.0.4_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r7.0.4-mongodb-raspberrypi-docker-unofficial) [December 10, 2023]
-
 - [_7.0.3_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r7.0.3-mongodb-raspberrypi-docker-unofficial) [November 11, 2023]
 
 - [_7.0.2_](https://github.com/themattman/mongodb-raspberrypi-docker/releases/tag/r7.0.2-mongodb-raspberrypi-docker-unofficial) [October 28, 2023]
