@@ -1,7 +1,9 @@
 #
-# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+# NOTE: THIS DOCKERFILE WAS ORIGINALLY GENERATED VIA "apply-templates.sh"
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
+#
+# SUBNOTE: This file has been directly edited for https://github.com/themattman/mongodb-raspberrypi-docker
 #
 
 FROM ubuntu:focal
@@ -83,11 +85,11 @@ RUN set -ex; \
 
 # https://docs.mongodb.org/master/release-notes/6.0/
 ENV MONGO_VERSION r7.0.4
-# 09/29/2022, https://github.com/mongodb/mongo/tree/94fb7dfc8b974f1f5343e7ea394d0d9deedba50e
+ENV PI_VERSION pi4
 
 RUN set -x; \
-    wget -O "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.pi.${MONGO_VERSION}.tar.gz" \
-        && tar xzvf "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" -C /tmp \
+    wget -O "/tmp/unofficial-mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" \
+        && tar xzvf "/tmp/unofficial-mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" -C /tmp \
         && mv /tmp/mongo /usr/local/bin \
         && mv /tmp/mongod /usr/local/bin \
         && mv /tmp/mongos /usr/local/bin \
