@@ -36,7 +36,7 @@ This repo and any code or binaries within it are not explicitly endorsed nor pro
 1. Navigate to the [releases page](https://github.com/themattman/mongodb-raspberrypi-docker/releases).
 2. Download the tarball via browser or copying the link to a terminal session
 ```
-$ wget https://github.com/themattman/mongodb-raspberrypi-docker/releases/download/r7.0.4-mongodb-raspberrypi-docker-unofficial/mongodb.ce.pi4.r7.0.4-mongodb-raspberrypi-docker-unofficial.tar.gz
+wget https://github.com/themattman/mongodb-raspberrypi-docker/releases/download/r7.0.4-mongodb-raspberrypi-docker-unofficial/mongodb.ce.pi4.r7.0.4-mongodb-raspberrypi-docker-unofficial.tar.gz
 ```
 3. Load the release
 ```
@@ -51,7 +51,7 @@ mongodb-raspberrypi4-unofficial-r7.0.4    latest    c04f966fe9e2   5 days ago   
 ```
 5. Run the image
 ```
-$ docker run -it mongodb-raspberrypi4-unofficial-r7.0.4
+docker run -it mongodb-raspberrypi4-unofficial-r7.0.4
 ```
 
 ### Custom Build Steps (Slower, more control)
@@ -59,11 +59,11 @@ $ docker run -it mongodb-raspberrypi4-unofficial-r7.0.4
 1. Save the `Dockerfile` & `docker-entrypoint.sh` files from the relevant version's sub-directory, to a local working directory.
 2. Adjust permissions on the `docker-entrypoint.sh` file to make it executable
 ```
-$ chmod +x docker-entrypoint.sh
+chmod +x docker-entrypoint.sh
 ```
 3. Build the image from your working directory
 ```
-$ docker build -t mongodb-unofficial:7.0.4
+docker build -t mongodb-unofficial:7.0.4
 ```
 
 The image should now exist in your local docker images, or can be pushed to a registry for wider usage.
