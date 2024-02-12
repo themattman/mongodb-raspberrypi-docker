@@ -63,7 +63,7 @@ chmod +x docker-entrypoint.sh
 ```
 3. Build the image from your working directory
 ```
-docker build -t mongodb-unofficial:7.0.4
+docker build -t mongodb-unofficial:7.0.4 .
 ```
 
 The image should now exist in your local docker images, or can be pushed to a registry for wider usage.
