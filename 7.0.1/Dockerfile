@@ -95,6 +95,7 @@ RUN set -x; \
         && rm /tmp/LICENSE-Community.txt \
 	&& wget -O "/tmp/libstdc++.so.6.0.29" "https://github.com/themattman/raspberrypi-binaries/raw/main/libstdc%2B%2B/libstdc%2B%2B.so.6.0.29" \
 	&& mv "/tmp/libstdc++.so.6.0.29" "/usr/local/lib/libstdc++.so.6.0.29" \
+	&& [ ! -d /lib/aarch64-linux-gnu/ ] && mkdir /lib/aarch64-linux-gnu/ \
 	&& ln -sf "/usr/local/lib/libstdc++.so.6.0.29" "/lib/aarch64-linux-gnu/libstdc++.so.6"
 VOLUME /data/db /data/configdb
 
