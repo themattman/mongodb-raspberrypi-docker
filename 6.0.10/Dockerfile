@@ -84,7 +84,7 @@ RUN set -ex; \
 # https://docs.mongodb.org/master/release-notes/6.0/
 ENV MONGO_VERSION r6.0.10
 # 09/29/2022, https://github.com/mongodb/mongo/tree/94fb7dfc8b974f1f5343e7ea394d0d9deedba50e
-
+RUN mkdir -p /lib/aarch64-linux-gnu
 RUN set -x; \
     wget -O "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.pi.${MONGO_VERSION}.tar.gz" \
         && tar xzvf "/tmp/unofficial-mongodb.ce.pi.${MONGO_VERSION}.tar.gz" -C /tmp \
