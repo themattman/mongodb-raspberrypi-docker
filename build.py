@@ -64,7 +64,6 @@ if push:
         else:
             print("Please enter your Docker credentials.")
             docker_login()
-        os.system(f"docker login -u {docker_user} -p {docker_token}")
     docker_login()
     
 subfolders = [f.path for f in os.scandir() if f.is_dir() and not f.name.startswith('.')]
