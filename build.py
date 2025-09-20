@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 
 if not os.path.exists("./mongodb-raspberrypi-docker"):
@@ -12,6 +11,33 @@ else:
 # remove template folder
 if os.path.exists("./template"):
     os.system("rm -R ./template")
+    
+def patch_dockerfile(dockerfile_path: str):
+    with open(dockerfile_path, "r") as f:
+        lines = f.readlines()
+
+    already_patched = any("ARG EXTRA_RUN" in line for line in lines)
+    if already_patched:
+        return  # no change needed
+
+    new_lines = []
+    inserted = False
+    for line in lines:
+        if line.strip().startswith("CMD") and not inserted:
+            new_lines.append("ARG EXTRA_RUN\n")
+            new_lines.append("RUN if [ -n \"$EXTRA_RUN\" ]; then eval \"$EXTRA_RUN\"; fi\n")
+            inserted = True
+        new_lines.append(line)
+
+    # fallback: if no CMD found, append at end
+    if not inserted:
+        new_lines.append("\nARG EXTRA_RUN\n")
+        new_lines.append("RUN if [ -n \"$EXTRA_RUN\" ]; then eval \"$EXTRA_RUN\"; fi\n")
+
+    with open(dockerfile_path, "w") as f:
+        f.writelines(new_lines)
+
+    print(f"✅ Patched {dockerfile_path}")
 
 # Ask if the user wants to push to Docker Hub
 def ask_push():
@@ -72,8 +98,27 @@ counter = 0
 # Build the images
 for folder in build:
     os.chdir(folder)
+
+    dockerfile_path = os.path.join(os.getcwd(), "Dockerfile")
+    if os.path.exists(dockerfile_path):
+        patch_dockerfile(dockerfile_path)
+
     os.system("chmod +x *.sh")
-    os.system(f"docker build -t serpensin/mongodb-unofficial-armv8:{os.path.basename(folder)} {'--push .' if push else '.'}")
+
+    extra_run = (
+        "mkdir -p /usr/local/lib && "
+        "wget -q -O /usr/local/lib/libstdc++.so.6.0.29 "
+        "'https://github.com/themattman/raspberrypi-binaries/raw/main/libstdc%2B%2B/libstdc%2B%2B.so.6.0.29' && "
+        "ln -sf /usr/local/lib/libstdc++.so.6.0.29 /lib/aarch64-linux-gnu/libstdc++.so.6 && "
+        "ldconfig"
+    )
+
+    os.system(
+        f"docker build "
+        f"--build-arg EXTRA_RUN=\"{extra_run}\" "
+        f"-t serpensin/mongodb-unofficial-armv8:{os.path.basename(folder)} "
+        f"{'--push .' if push else '.'}"
+    )
 
     counter += 1
 
