@@ -86,7 +86,7 @@ RUN set -ex; \
 # https://docs.mongodb.org/master/release-notes/6.0/
 ENV MONGO_VERSION r6.0.14
 ENV PI_VERSION pi4
-
+RUN mkdir -p /lib/aarch64-linux-gnu
 RUN set -x; \
     wget -O "/tmp/unofficial-mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/${MONGO_VERSION}-rpi-unofficial/mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" \
         && tar xzvf "/tmp/unofficial-mongodb.ce.${PI_VERSION}.${MONGO_VERSION}.tar.gz" -C /tmp \
@@ -108,4 +108,6 @@ COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 27017
+ARG EXTRA_RUN
+RUN if [ -n "$EXTRA_RUN" ]; then eval "$EXTRA_RUN"; fi
 CMD ["mongod"]

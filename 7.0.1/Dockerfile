@@ -107,4 +107,6 @@ COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 27017
+ARG EXTRA_RUN
+RUN if [ -n "$EXTRA_RUN" ]; then eval "$EXTRA_RUN"; fi
 CMD ["mongod"]
